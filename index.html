@@ -54,7 +54,7 @@
   li{ margin-bottom:6px; max-width:64ch; }
   .contact-box{
     font-family: -apple-system, Segoe UI, Roboto, sans-serif;
-    background:#EEF3F0;
+    background:var(--moss-light,#EEF3F0);
     border:1px solid var(--line);
     border-radius:8px;
     padding:18px 20px;
@@ -77,9 +77,9 @@
 <div class="wrap">
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: September 4, 2026</p>
+  <p class="updated">Last updated: October 12, 2026</p>
 
-  <p>This Privacy Policy explains how <span class="app-name">PrivateSMS</span> ("the app", "we", "us") collects, uses, and protects information when you use it. The app is a personal SMS messaging application developed by Bruno Samky that can also act as your device's default SMS handler.</p>
+  <p>This Privacy Policy explains how <span class="app-name">Private SMS</span> ("the app", "we", "us") collects, uses, and protects information when you use it. The app is a personal SMS messaging application that can also act as your device's default SMS handler.</p>
 
   <p>By installing or using the app, you agree to the practices described in this policy. If you do not agree, please do not use the app.</p>
 
@@ -96,64 +96,110 @@
   <h3>Phone state and call log (where the optional companion Phone app is installed)</h3>
   <p>If you choose to install the optional companion Phone app, it may request phone and call log permissions to display call history, handle incoming/outgoing calls, and support call-related features. This is entirely optional and separate from the core SMS app.</p>
 
-  <h3>Location (optional, only with your explicit action)</h3>
-  <p>If you choose to use the "Share my location" feature inside a conversation, the app will ask for location permission and your explicit confirmation each time before obtaining your device's current location and inserting it into a message you send. The app never accesses or shares your location in the background, and never attempts to determine another person's location.</p>
-
   <h3>Microphone (only if you use call recording, companion Phone app)</h3>
   <p>If enabled in the optional companion Phone app and permitted on your device and under applicable law, call recording uses the microphone only during an active call you choose to record. We do not record calls automatically or without a clear on-screen indicator.</p>
 
   <h3>Notifications</h3>
-  <p>The app posts notifications for incoming messages. You can control what is shown in these notifications (including hiding message content or sender identity) from within the app's settings.</p>
+  <p>The app posts notifications for incoming messages. You can control what is shown in these notifications from within the app's settings: you can turn off message previews, or set a notification privacy label that replaces the sender and message content. Notifications for locked conversations never show their content.</p>
 
   <h2>2. Information We Do Not Collect</h2>
   <ul>
-    <li>We do not upload the content of your SMS/MMS messages to any server we operate.</li>
+    <li>We do not upload the content of your SMS/MMS messages to any server we operate. Message text is only ever sent off your device if you turn on the optional AI Assistant, and then only to Google, as described in Section 4.</li>
     <li>We do not sell your personal data to third parties.</li>
-    <li>We do not track your location in the background or without your explicit, per-use confirmation.</li>
+    <li>The app does not access your location.</li>
     <li>We do not access another person's device or location through their phone number.</li>
   </ul>
 
   <h2>3. Locked / Private Conversations</h2>
   <p>The app includes an optional feature that lets you mark certain conversations as private, protected by a PIN or biometric unlock. This data (which conversations are private, your PIN, and related settings) is stored only on your device, is not transmitted anywhere, and is not accessible to us. If you forget your PIN or lose your device, we cannot recover this data.</p>
 
-  <h2>4. Advertising</h2>
-  <p>The app displays advertisements through the following third-party advertising networks: Google AdMob, AppLovin, and Meta Audience Network. These networks may collect device identifiers (such as your advertising ID), general device information, and approximate location to serve and measure ads, in accordance with their own privacy policies:</p>
+  <h2>4. AI Assistant (Optional, Off by Default)</h2>
+  <p>The app includes an optional AI Assistant that can draft (and, only if you turn it on, automatically send) replies to incoming messages while you are away. It uses Google's Gemini API. The AI Assistant is <strong>switched off by default</strong>, and nothing described in this section happens unless you turn it on yourself in Settings &rarr; AI Assistant and enter your own Gemini API key.</p>
+
+  <h3>When data is sent</h3>
+  <p>Message content is sent to Google only when <strong>all</strong> of the following are true: the AI Assistant is switched on, Auto-reply is switched on, you are marked as away (manually or by your away schedule), and you have entered a Gemini API key. It is then sent once for each new incoming SMS. Messages in locked/private conversations, and messages from senders that are not phone numbers (such as service names and short codes), are never sent.</p>
+
+  <h3>What is sent</h3>
   <ul>
-    <li>Google AdMob: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
-    <li>AppLovin: <a href="https://www.applovin.com/privacy/">https://www.applovin.com/privacy/</a></li>
-    <li>Meta Audience Network: <a href="https://www.facebook.com/privacy/policy/">https://www.facebook.com/privacy/policy/</a></li>
+    <li>The text of the new incoming message.</li>
+    <li>The text of up to the 10 most recent earlier messages in that same conversation (both received and sent), so the reply fits the conversation.</li>
+    <li>The customer type you assigned to that sender (for example, Wholesale or Retail), if any.</li>
+    <li>If you also turn on "Style learning": up to 8 examples of messages you have sent yourself, taken from your sent messages, so the reply matches your writing style.</li>
   </ul>
-  <p>You can remove ads by purchasing the optional "Remove Ads" subscription described below.</p>
+  <p>The sender's phone number, their contact name, your contacts and your device identifiers are not sent as separate information. However, any names, phone numbers or other details that appear <em>inside</em> the message text are sent as part of that text.</p>
 
-  <h2>5. Subscriptions and Payments</h2>
-  <p>The app offers an optional "Remove Ads" subscription (monthly or yearly), processed entirely through Google Play Billing. We do not receive or store your payment card details — these are handled by Google Play. Your purchase is tied to your Google account and can be restored on any device signed into that account using the "Restore Purchase" option in the app.</p>
+  <h3>Where it is sent</h3>
+  <p>The data is sent over an encrypted (HTTPS) connection directly from your device to Google's Gemini API (generativelanguage.googleapis.com), using the API key you provided. It is not sent to any server we operate, and we never see it. Google processes it under its own terms and privacy policy:</p>
+  <ul>
+    <li>Gemini API Additional Terms of Service: <a href="https://ai.google.dev/gemini-api/terms">https://ai.google.dev/gemini-api/terms</a></li>
+    <li>Google Privacy Policy: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+  </ul>
+  <p><strong>Important:</strong> if you use a free (unpaid) Gemini API key, Google's terms allow Google to use the content you send to improve its products, and human reviewers may read it. Do not turn on the AI Assistant for conversations containing information you do not want shared with Google in this way.</p>
 
-  <h2>6. Data Storage and Security</h2>
-  <p>Sensitive settings (such as your PIN) are stored using Android's encrypted storage mechanisms. Your messages remain in Android's standard SMS storage on your device, protected by your device's own lock screen and security settings. Because standard SMS is not end-to-end encrypted at the network level, we recommend not sending highly sensitive information via SMS to recipients using other apps or carriers.</p>
+  <h3>What stays on your device</h3>
+  <p>Your Gemini API key is stored using Android's encrypted storage. Your product list, customer types and style-learning examples are stored only on your device. AI-generated replies are shown to you in a notification for review, unless you have turned on automatic sending, in which case they are sent as a normal SMS to the person who messaged you.</p>
 
-  <h2>7. Your Choices and Controls</h2>
+  <h3>Turning it off</h3>
+  <p>You can stop all data being sent to Google at any time by switching off the AI Assistant or Auto-reply, or by removing your API key, in Settings &rarr; AI Assistant.</p>
+
+  <h2>5. Advertising</h2>
+  <p>The app displays advertisements through Google AdMob. Google's Mobile Ads SDK may collect your device's advertising ID and other device identifiers, your IP address (from which an approximate location can be estimated), ad interaction data and diagnostic information, in order to serve, measure and protect ads. The app does not include your messages, contacts or phone numbers in ad requests. Google handles this data under its own policies:</p>
+  <ul>
+    <li>Google Privacy Policy: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+    <li>How Google uses information from apps that use its services: <a href="https://policies.google.com/technologies/partner-sites">https://policies.google.com/technologies/partner-sites</a></li>
+  </ul>
+  <h3>Ad consent</h3>
+  <p>Where required by law (for example in the European Economic Area, the United Kingdom and Switzerland), the app asks for your consent through Google's consent form before any ads are requested. You can review or change your choice at any time from Settings &rarr; Ad privacy choices. You can also reset or delete your advertising ID, or opt out of personalized ads, in your device's Android settings.</p>
+  <h3>Facebook (Meta) app measurement</h3>
+  <p>To measure how many people install and open the app after seeing our ads on Facebook and Instagram, the app includes Meta's Facebook SDK (core only — no Facebook Login and no sharing). It starts only after you give consent where consent is required. It then sends Meta your device's advertising ID, an app-install identifier, basic device information (such as model, operating system version, language and time zone), your IP address, and events such as app installs, app opens and Google Play purchases. It never receives your messages, phone numbers, contacts or PIN. You can withdraw consent in Settings &rarr; Ad privacy choices, and you can reset or delete your advertising ID in your device settings. Meta handles this data under its own policy:</p>
+  <ul>
+    <li>Meta Privacy Policy: <a href="https://www.facebook.com/privacy/policy/">https://www.facebook.com/privacy/policy/</a></li>
+  </ul>
+  <p>You can stop ads entirely with the optional "Remove Ads" purchase described below. If you have removed ads, the Facebook SDK is not started either.</p>
+
+  <h2>6. Subscriptions and Payments</h2>
+  <p>The app offers optional "Remove Ads" purchases: a monthly or yearly subscription, or a one-time lifetime purchase, all processed entirely through Google Play Billing. We do not receive or store your payment card details — these are handled by Google Play. Your purchase is tied to your Google account and can be restored on any device signed into that account using the "Restore Purchase" option in the app.</p>
+
+  <h2>7. Data Storage and Security</h2>
+  <p>Sensitive settings (such as your PIN) are stored using Android's encrypted storage mechanisms. Your messages remain in Android's standard SMS storage on your device, protected by your device's own lock screen and security settings.</p>
+  <p>Message backups you create are saved as a file in the location you choose (or, for automatic backups, in the app's own storage on your device). They are not uploaded anywhere by the app and are not encrypted, so keep backup files somewhere safe. The app does not use Android's cloud backup, and it does not include any crash-reporting or analytics services other than the ad measurement described in Section 5.</p>
+  <p>Because standard SMS is not end-to-end encrypted at the network level, we recommend not sending highly sensitive information via SMS to recipients using other apps or carriers.</p>
+
+  <h2>8. Your Choices and Controls</h2>
   <ul>
     <li>You can uninstall the app at any time, which removes all app-specific settings from your device.</li>
-    <li>You can revoke any permission (Contacts, Location, Microphone, etc.) at any time from your device's Settings — some features will stop working if you do.</li>
-    <li>You can clear the app's stored preferences from within its own Settings screen.</li>
-    <li>You can block or filter unwanted senders using the app's built-in blocking and keyword-filter features.</li>
+    <li>You can revoke any permission (such as Contacts, Camera or Notifications) at any time from your device's Settings — some features will stop working if you do.</li>
+    <li>You can switch off the AI Assistant at any time (see Section 4).</li>
+    <li>You can change your ad consent choices from Settings &rarr; Ad privacy choices (see Section 5).</li>
+    <li>You can clear all of the app's data from your device's Settings &rarr; Apps &rarr; Private SMS &rarr; Storage.</li>
+    <li>You can block unwanted senders using the app's built-in blocking feature.</li>
   </ul>
 
-  <h2>8. Children's Privacy</h2>
+  <h2 id="data-deletion">9. Data deletion</h2>
+  <p>We do not run any server that stores your messages, contacts, PIN or other app data, so there is no account or copy on our side to delete. Here is how to delete each kind of data yourself:</p>
+  <ul>
+    <li><strong>PIN, private conversations and settings</strong> are stored only on your device. Uninstalling the app deletes them, as does Settings &rarr; Apps &rarr; Private SMS &rarr; Storage &rarr; Clear storage.</li>
+    <li><strong>Text messages</strong> are kept in Android's shared SMS storage on your device, not inside the app, so uninstalling the app does <em>not</em> delete them. To delete messages, delete the conversations in the app (or in any SMS app on your phone) before or after uninstalling.</li>
+    <li><strong>Backup files you export</strong> are saved where you choose (for example your Downloads folder). They stay there until you delete them yourself, for example with your phone's Files app. Automatic backups are kept in the app's own storage and are deleted when you uninstall the app.</li>
+    <li><strong>AI Assistant:</strong> message text is sent to Google's Gemini API only when you have turned the AI Assistant on with your own API key (see Section 4). We never receive or store it. Turning the AI Assistant off, or removing your API key, stops any further sending; data already sent is held by Google under the Gemini API terms.</li>
+    <li><strong>Advertising ID:</strong> you can delete your advertising ID in Android settings: on most phones Settings &rarr; Privacy (or Security &amp; privacy &rarr; More privacy settings) &rarr; Ads &rarr; Delete advertising ID. Ad and measurement data already collected by Google AdMob and Meta is handled under their privacy policies (see Section 5), and you can withdraw ad consent in the app under Settings &rarr; Ad privacy choices.</li>
+  </ul>
+  <p>If you have questions about deleting your data, email <a href="mailto:brunosamky1@gmail.com">brunosamky1@gmail.com</a>.</p>
+
+  <h2>10. Children's Privacy</h2>
   <p>The app is not directed at children under 13 (or the minimum age required in your country), and we do not knowingly collect personal information from children. If you believe a child has provided information through the app, please contact us using the details below so we can address it.</p>
 
-  <h2>9. Changes to This Policy</h2>
+  <h2>11. Changes to This Policy</h2>
   <p>We may update this Privacy Policy from time to time. Material changes will be reflected by updating the "Last updated" date at the top of this page. Continued use of the app after changes are posted means you accept the updated policy.</p>
 
-  <h2>10. Contact Us</h2>
+  <h2>12. Contact Us</h2>
   <div class="contact-box">
     <p style="margin:0;">If you have questions about this Privacy Policy or how your data is handled, contact:</p>
-    <p style="margin:6px 0 0;"><strong>Developer:</strong> Bruno Samky</p>
     <p style="margin:6px 0 0;"><strong>Email:</strong> <a href="mailto:brunosamky1@gmail.com">brunosamky1@gmail.com</a></p>
   </div>
 
   <footer>
-    This page was generated as a starting template for PrivateSMS. Please review it before publishing (a legal professional's review is recommended), and keep the "Last updated" date current whenever you make material changes to the app's data practices.
+    This policy applies to the Private SMS app for Android (com.simex.messages).
   </footer>
 
 </div>
